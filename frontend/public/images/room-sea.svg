@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="Балкон с видом на море">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e6f78"/><stop offset=".55" stop-color="#8fd0d6"/><stop offset="1" stop-color="#d8eef0"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c8b94"/><stop offset="1" stop-color="#0d5a63"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#sky)"/>
+  <circle cx="612" cy="118" r="54" fill="#f7e2b4" opacity=".92"/>
+  <path d="M0 300h800v220H0z" fill="url(#sea)"/>
+  <g fill="none" stroke="#bfe6e9" stroke-width="3" stroke-linecap="round" opacity=".6">
+    <path d="M40 336c30 0 44-14 74-14s44 14 74 14 44-14 74-14 44 14 74 14"/>
+    <path d="M300 372c34 0 50-16 84-16s50 16 84 16 50-16 84-16 50 16 84 16"/>
+    <path d="M90 412c34 0 50-16 84-16s50 16 84 16"/>
+  </g>
+  <path d="M0 300c120-26 200 10 300-6s180-34 300-10 160 2 200-6v22H0z" fill="#0e6f78" opacity=".35"/>
+  <path d="M0 448h800v72H0z" fill="#e8dcc6"/>
+  <path d="M0 440h800v12H0z" fill="#cbb994"/>
+  <g stroke="#f5f1ea" stroke-width="9" stroke-linecap="round">
+    <path d="M60 440V330M180 440V330M300 440V330M420 440V330M540 440V330M660 440V330M760 440V330"/>
+    <path d="M40 330h740"/>
+  </g>
+  <g transform="translate(96 352)">
+    <path d="M0 88V40" stroke="#8a7355" stroke-width="7" stroke-linecap="round"/>
+    <path d="M-44 44c10-30 28-44 44-44s34 14 44 44z" fill="#2f7d52"/>
+    <ellipse cx="0" cy="88" rx="30" ry="9" fill="#b89b72"/>
+  </g>
+  <g transform="translate(620 356)">
+    <rect x="-56" y="30" width="112" height="14" rx="7" fill="#fdfbf6"/>
+    <rect x="-46" y="44" width="12" height="42" rx="6" fill="#d8cdb6"/>
+    <rect x="34" y="44" width="12" height="42" rx="6" fill="#d8cdb6"/>
+    <path d="M-50 30c0-26 8-40 24-40h52c16 0 24 14 24 40z" fill="#f0a020" opacity=".85"/>
+  </g>
+</svg>
