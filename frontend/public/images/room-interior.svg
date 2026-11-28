@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="Интерьер номера">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3ece0"/><stop offset="1" stop-color="#ded3bf"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#wall)"/>
+  <path d="M0 400h800v120H0z" fill="#b89b72"/>
+  <path d="M0 392h800v14H0z" fill="#8a7355"/>
+  <g>
+    <rect x="470" y="96" width="250" height="210" rx="8" fill="#8fd0d6"/>
+    <path d="M470 232h250v74H470z" fill="#2c8b94"/>
+    <circle cx="664" cy="150" r="26" fill="#f7e2b4"/>
+    <rect x="470" y="96" width="250" height="210" rx="8" fill="none" stroke="#f5f1ea" stroke-width="12"/>
+    <path d="M589 96v210" stroke="#f5f1ea" stroke-width="10"/>
+  </g>
+  <g>
+    <rect x="70" y="250" width="330" height="150" rx="12" fill="#fdfbf6"/>
+    <rect x="70" y="300" width="330" height="100" rx="10" fill="#e6ddcb"/>
+    <rect x="56" y="176" width="358" height="88" rx="14" fill="#0e6f78"/>
+    <rect x="96" y="250" width="124" height="52" rx="12" fill="#fff"/>
+    <rect x="248" y="250" width="124" height="52" rx="12" fill="#fff"/>
+    <rect x="70" y="340" width="330" height="30" fill="#0e6f78" opacity=".55"/>
+  </g>
+  <g transform="translate(432 300)">
+    <rect x="-4" y="0" width="80" height="100" rx="8" fill="#8a7355"/>
+    <rect x="6" y="18" width="60" height="26" rx="5" fill="#cbb994"/>
+    <rect x="6" y="56" width="60" height="26" rx="5" fill="#cbb994"/>
+    <ellipse cx="36" cy="-6" rx="30" ry="8" fill="#b89b72"/>
+    <path d="M22-22h28l10-30H12z" fill="#f0c987"/>
+  </g>
+  <g fill="none" stroke="#5a6670" stroke-width="5" stroke-linecap="round" opacity=".45">
+    <path d="M120 120h180M120 148h120"/>
+  </g>
+</svg>

@@ -5,6 +5,7 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import sessionmaker
 
 from app.api import bookings, health, rooms
@@ -26,6 +27,15 @@ def validation_error(_request: Request, error: RequestValidationError) -> JSONRe
     return JSONResponse(status_code=422, content=body.model_dump(mode="json"))
 
 
+def database_unavailable(_request: Request, _error: OperationalError) -> JSONResponse:
+    """Answer an unreachable database with the same 503 contract as GET /health.
+
+    The driver message can carry the host, port and role, so only a fixed
+    detail is returned. The traceback still reaches the server log.
+    """
+    return JSONResponse(status_code=503, content={"detail": "Database unavailable"})
+
+
 def create_app(settings: Settings | None = None) -> FastAPI:
     settings = settings if settings is not None else Settings()
 
@@ -44,6 +54,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         BookingEventPublisher((AuditSubscriber(), DemoNotificationSubscriber())),
     )
     app.add_exception_handler(RequestValidationError, validation_error)
+    app.add_exception_handler(OperationalError, database_unavailable)
     app.add_exception_handler(BookingNotFound, bookings.booking_not_found)
     app.add_exception_handler(BookingConflict, bookings.booking_conflict)
     origins = [origin.strip() for origin in settings.cors_origins.split(",") if origin.strip()]

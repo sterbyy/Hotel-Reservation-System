@@ -10,7 +10,9 @@ FROM (
     VALUES
         ('Standard Twin (Demo)', 'Two single beds', 'standard', 2, 25000.50, ARRAY['Wi-Fi']),
         ('Family Room (Demo)', 'One double bed and two single beds', 'family', 4, 42000.00,
-            ARRAY['Wi-Fi', 'Air conditioning'])
+            ARRAY['Wi-Fi', 'Air conditioning']),
+        ('Deluxe Suite (Demo)', 'A separate living room, a terrace and a sunset view', 'deluxe', 2,
+            68000.00, ARRAY['Wi-Fi', 'Terrace', 'Breakfast', 'Air conditioning'])
 ) AS demo(name, description, category, capacity, nightly_rate, amenities)
 WHERE NOT EXISTS (SELECT 1 FROM rooms WHERE rooms.name = demo.name)
 ORDER BY demo.capacity, demo.name;

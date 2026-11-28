@@ -1,10 +1,10 @@
 # Hotel Reservation System
 
-Backend учебного прототипа на FastAPI, Pydantic, SQLAlchemy и PostgreSQL. Гость может найти свободный номер, создать бронь и использовать выданный токен для просмотра, демонстрационной оплаты и отмены.
+Учебный прототип: backend на FastAPI, Pydantic, SQLAlchemy и PostgreSQL, интерфейс гостя на React и Vite в каталоге [`frontend/`](frontend). Гость может найти свободный номер, создать бронь и использовать выданный токен для просмотра, демонстрационной оплаты и отмены.
 
-[API-контракт](docs/API_CONTRACT.md) · [Схема PostgreSQL](docs/DB_CONTRACT.md) · [Паттерны и UML](docs/DESIGN_PATTERNS.md) · [Use Cases и последовательности](docs/USE_CASES.md) · [SAST](docs/SAST.md)
+[API-контракт](docs/API_CONTRACT.md) · [Схема PostgreSQL](docs/DB_CONTRACT.md) · [Паттерны и UML](docs/DESIGN_PATTERNS.md) · [Use Cases и последовательности](docs/USE_CASES.md) · [Интерфейс](docs/FRONTEND.md) · [SAST](docs/SAST.md)
 
-## Локальный запуск
+## Локальный запуск backend
 
 Нужны Python 3.11+ и PostgreSQL. Команды ниже рассчитаны на PowerShell и выполняются из корня репозитория. Для работы с PostgreSQL через терминал добавьте его `bin` в `PATH`.
 
@@ -39,7 +39,7 @@ Backend учебного прототипа на FastAPI, Pydantic, SQLAlchemy �
    psql -h 127.0.0.1 -U hotel_app -d hotel -v ON_ERROR_STOP=1 -f seed.sql
    ```
 
-   Seed добавляет `Standard Twin (Demo)` на двоих за `25000.50` KZT и `Family Room (Demo)` на четверых за `42000.00` KZT за ночь. Повторный запуск пропускает совпадающие демонстрационные названия и сохраняет существующие данные. ID номеров возвращает поиск.
+   Seed добавляет `Standard Twin (Demo)` на двоих за `25000.50` KZT, `Family Room (Demo)` на четверых за `42000.00` KZT и `Deluxe Suite (Demo)` на двоих за `68000.00` KZT за ночь. Повторный запуск пропускает совпадающие демонстрационные названия и сохраняет существующие данные, поэтому на уже заполненной базе он только добавит отсутствующие номера. ID номеров возвращает поиск.
 
 6. Запустите приложение.
 
@@ -56,6 +56,25 @@ Backend учебного прототипа на FastAPI, Pydantic, SQLAlchemy �
    На Linux и macOS используйте `python3` для создания окружения, затем `.venv/bin/python` и `.venv/bin/alembic`.
 
 Swagger UI доступен по `http://127.0.0.1:8000/docs`, OpenAPI JSON по `http://127.0.0.1:8000/openapi.json`. `GET /health` возвращает `200 {"status":"ok"}`, когда PostgreSQL отвечает на запрос, и `503 {"detail":"Database unavailable"}`, когда подключение недоступно.
+
+## Локальный запуск интерфейса
+
+Нужен Node.js 20.19+ или 22.12+. Порядок запуска: PostgreSQL, затем backend, затем frontend. Команды выполняются из каталога `frontend`.
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Интерфейс открывается на `http://localhost:5173`. Dev-сервер проксирует `/api` и `/health` на `http://127.0.0.1:8000`, поэтому браузер остаётся на одном origin и CORS в dev не требуется. Другой адрес backend задаётся переменной `VITE_PROXY_TARGET`, а сборка для отдельного хоста — переменной `VITE_API_BASE_URL`. Пример конфигурации лежит в `frontend/.env.example`; файл `.env` не попадает в Git.
+
+```powershell
+npm run build    # проверка типов и production-сборка в frontend/dist
+npm run preview  # просмотр сборки
+```
+
+Production-сборка обращается к backend напрямую, поэтому для неё в `.env` backend нужен `CORS_ORIGINS` с origin, который раздаёт интерфейс. Подробности об экранах и состояниях — в [docs/FRONTEND.md](docs/FRONTEND.md).
 
 ## Контракт для React
 
